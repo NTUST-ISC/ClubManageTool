@@ -26,10 +26,10 @@ Create `.env` and fill in `USERNAME` and `PASSWORD`.
 
 
 ### .xlsx
-Fill in `member.xlsx`.
+Fill in `member.xlsx`.  
 (if a memeber is `社員`, its `職稱` column can be empty)  
-![image](https://github.com/NTUST-ISC/ClubManageTool/assets/55608737/5720f7d9-2f29-42e5-a447-09104b1529f0)
-
+(if member didn't provide phone number, `電話` column can be empty)
+![image](https://github.com/NTUST-ISC/ClubManageTool/assets/55608737/f0e785d5-096e-4fc9-ab4c-5fc6cb209dfa)
 
 
 ### Run 
