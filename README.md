@@ -2,7 +2,7 @@
 Automation tool for adding member to club manage system.
 
 # Installation
-## Download
+## Pre-Download
 - [Google Chrome](https://www.google.com/intl/zh-TW/chrome/)
 - [Chrome Driver](https://chromedriver.chromium.org/downloads)
 
@@ -22,7 +22,8 @@ pip install -r requirements.txt
 ## Account
 ### .env
 Create `.env` and fill in `USERNAME` and `PASSWORD`.  
-![image](https://github.com/NTUST-ISC/ClubManageTool/assets/55608737/58e8fbf6-1157-4368-a774-fcb3f88833cb)
+![image](https://github.com/NTUST-ISC/ClubManageTool/assets/55608737/c6ce292a-8610-4833-b818-6a43ab4b9292)
+
 
 ### .xlsx
 Fill in `member.xlsx`.
