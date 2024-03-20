@@ -12,16 +12,17 @@ from time import sleep
 load_dotenv()
 
 class Member():
-    def __init__(self, _student_id: str, _name: str, _job: str = None) -> None:
+    def __init__(self, _student_id: str, _name: str, _job: str = None, _phone: str = None) -> None:
         self.student_id = _student_id
         self.name = _name
         self.job = _job or "社員"
+        self.phone = _phone
     
     def __str__(self) -> str:
-        return f"({self.student_id}, {self.name}, {self.job})"
+        return f"({self.student_id}, {self.name}, {self.job}, {self.phone})"
     
     def __repr__(self) -> str:
-        return f"({self.student_id}, {self.name}, {self.job})"
+        return f"({self.student_id}, {self.name}, {self.job}, {self.phone})"
 
 def WaitForLoad(time: float = 0.2):
     def decorator(func):
@@ -68,6 +69,8 @@ class WebControler():
         if member.job != "社員":
             self.set_select_menu("Identity", 0)
         self.send_string("Title", member.job)
+        if member.phone is not None:
+            self.send_string("Phone", member.phone)
         self.click_button("body > div.container > div:nth-child(2) > div.col-sm-9.col-md-9 > form:nth-child(1) > p:nth-child(8) > button")
 
     def login_to_member_manage(self) -> None:
@@ -98,19 +101,18 @@ def load_xlsx(file_path: str) -> list[Member]:
     workbook = openpyxl.load_workbook(file_path)
     worksheet = workbook[workbook.sheetnames[0]]
     rows = worksheet.iter_rows(min_row=2, min_col=1)
-    members = [Member(*[c.value for c in row]) for row in rows]
+    members = [Member(*[c.value for c in row]) for row in rows if row[0].value is not None]
     return members
 
-def load_xlsxTEST():
-    filename = "members.xlsx"
+def load_xlsxTEST(filename: str):
     members = load_xlsx(filename)
     for member in members:
         print(member)
 
-def main():
+def main(filename: str):
     driver_option = ChromeOptions()
     driver_option.add_argument("start-maximized")
-    members = load_xlsx("members.xlsx")
+    members = load_xlsx(filename)
     failed_members = []
     with WebControler(driver_option) as web_controler:
         web_controler.login_to_member_manage()
@@ -128,4 +130,6 @@ def main():
             print(member)
 
 if "__main__" == __name__:
-    main()
+    filename = "test.xlsx"
+    # main(filename)
+    load_xlsxTEST(filename)
