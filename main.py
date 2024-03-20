@@ -102,7 +102,7 @@ def load_xlsx(file_path: str) -> list[Member]:
     return members
 
 def load_xlsxTEST():
-    filename = "NTUSTISC-member-112-2.xlsx"
+    filename = "members.xlsx"
     members = load_xlsx(filename)
     for member in members:
         print(member)
@@ -110,7 +110,7 @@ def load_xlsxTEST():
 def main():
     driver_option = ChromeOptions()
     driver_option.add_argument("start-maximized")
-    members = load_xlsx("NTUSTISC-member-112-2.xlsx")
+    members = load_xlsx("members.xlsx")
     failed_members = []
     with WebControler(driver_option) as web_controler:
         web_controler.login_to_member_manage()
